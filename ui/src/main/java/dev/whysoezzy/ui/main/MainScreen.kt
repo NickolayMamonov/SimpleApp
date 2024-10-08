@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -113,6 +114,12 @@ private fun ElementRow(element: ListElement) {
             Text(text = element.subtitle, style = MaterialTheme.typography.titleMedium)
             Button(
                 onClick = { /*TODO*/ },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    contentColor = MaterialTheme.colorScheme.onPrimary,
+                    disabledContainerColor =MaterialTheme.colorScheme.surfaceContainer ,
+                    disabledContentColor = MaterialTheme.colorScheme.outlineVariant
+                ),
                 modifier = Modifier.padding(top = 16.dp)
             ) {
                 element.button?.title?.let {
