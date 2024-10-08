@@ -27,16 +27,20 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import dev.whysoezzy.domain.entity.ListElement
 import dev.whysoezzy.ui.R
 import dev.whysoezzy.ui.main.vm.MainState
 import dev.whysoezzy.ui.main.vm.MainViewModel
+import dev.whysoezzy.ui.navigation.Screens
 import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(viewModel: MainViewModel = koinViewModel()) {
+fun MainScreen(
+    navController: NavController,
+    viewModel: MainViewModel = koinViewModel()) {
     val state by viewModel.state.collectAsState()
     Column {
         TopAppBar(
@@ -57,7 +61,7 @@ fun MainScreen(viewModel: MainViewModel = koinViewModel()) {
         Box(modifier = Modifier.fillMaxWidth()) {
             when (val st = state) {
                 is MainState.Content -> {
-                    ContentState(list = st.list)
+                    ContentState(list = st.list,navController)
                 }
 
                 is MainState.Error -> {
@@ -84,18 +88,18 @@ private fun LoadingState() {
 }
 
 @Composable
-private fun ContentState(list: List<ListElement>) {
+private fun ContentState(list: List<ListElement>,navController: NavController) {
     LazyColumn {
         item {
             list.forEach { element ->
-                ElementRow(element)
+                ElementRow(element,navController)
             }
         }
     }
 }
 
 @Composable
-private fun ElementRow(element: ListElement) {
+private fun ElementRow(element: ListElement,navController: NavController) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -111,9 +115,14 @@ private fun ElementRow(element: ListElement) {
         )
         Column(modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp)) {
             Text(text = element.title, style = MaterialTheme.typography.headlineSmall)
-            Text(text = element.subtitle, style = MaterialTheme.typography.titleMedium)
+            element.subtitle?.let {
+                Text(text = it, style = MaterialTheme.typography.titleMedium)
+            }
             Button(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    navController.navigate(Screens.DETAIL.route)
+//                    + "${element.title}"
+                },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.onPrimaryContainer,
                     contentColor = MaterialTheme.colorScheme.onPrimary,

@@ -8,7 +8,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.rememberNavController
 import dev.whysoezzy.ui.main.MainScreen
+import dev.whysoezzy.ui.navigation.NavGraph
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,26 +18,12 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MaterialTheme {
-                Surface(modifier = Modifier.fillMaxSize()) {
-                    MainScreen()
+                Surface(modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background) {
+                    NavGraph(navController = rememberNavController())
                 }
             }
         }
     }
 }
 
-//@Composable
-//fun Greeting(name: String, modifier: Modifier = Modifier) {
-//    Text(
-//        text = "Hello $name!",
-//        modifier = modifier
-//    )
-//}
-//
-//@Preview(showBackground = true)
-//@Composable
-//fun GreetingPreview() {
-//    SimpleAppTheme {
-//        Greeting("Android")
-//    }
-//}

@@ -57,6 +57,8 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation(libs.coil.compose)
-    implementation (libs.androidx.lifecycle.viewmodel.compose)
-    implementation (libs.koin.androidx.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.koin.androidx.compose)
+
+    implementation(libs.androidx.navigation.compose)
 }
