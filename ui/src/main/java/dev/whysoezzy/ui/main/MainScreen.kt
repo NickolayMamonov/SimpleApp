@@ -86,10 +86,6 @@ fun MainScreen(navController: NavController, viewModel: MainViewModel = koinView
 private fun LoadingState() {
     Box(modifier = Modifier.fillMaxSize()) {
         CircularProgressIndicator()
-        //        Progress(
-//            modifier = Modifier
-//                .align(Alignment.Center)
-//        )
     }
 }
 
@@ -128,9 +124,11 @@ private fun ElementRow(
                 .clip(shape = RoundedCornerShape(28.dp)),
             contentScale = ContentScale.Crop
         )
-        Column(modifier = Modifier
-            .padding(horizontal = 16.dp)
-            .weight(1f)) {
+        Column(
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .weight(1f)
+        ) {
             Text(
                 text = element.title,
                 style = MaterialTheme.typography.headlineSmall,
