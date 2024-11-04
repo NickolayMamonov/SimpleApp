@@ -44,6 +44,7 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun MainScreen(navController: NavController, viewModel: MainViewModel = koinViewModel()) {
     val state by viewModel.state.collectAsState()
+
     Column {
         TopAppBar(
             title = {
@@ -60,6 +61,11 @@ fun MainScreen(navController: NavController, viewModel: MainViewModel = koinView
                     modifier = Modifier.padding(end = 18.dp)
                 )
             })
+        LaunchedEffect(Unit) {
+            navController.addOnDestinationChangedListener { _, destination, _ ->
+                viewModel.refreshContent()
+            }
+        }
         Box(modifier = Modifier.fillMaxWidth()) {
             when (val st = state) {
                 is MainState.Content -> {
