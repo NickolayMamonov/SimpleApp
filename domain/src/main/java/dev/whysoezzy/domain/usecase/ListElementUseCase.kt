@@ -5,7 +5,6 @@ import dev.whysoezzy.domain.data.repository.ListElementRepository
 import dev.whysoezzy.domain.entity.ListElementEntity
 import dev.whysoezzy.domain.mapper.Mapper
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
 class ListElementUseCase(
