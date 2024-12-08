@@ -21,7 +21,6 @@ import dev.whysoezzy.ui.details.DetailsScreen
 import dev.whysoezzy.ui.details.DetailsScreenRoute
 import dev.whysoezzy.ui.main.MainScreen
 import dev.whysoezzy.ui.main.MainScreenRoute
-import dev.whysoezzy.ui.services.AudioPlayerScreen
 import dev.whysoezzy.ui.services.AudioService
 
 class MainActivity : ComponentActivity() {

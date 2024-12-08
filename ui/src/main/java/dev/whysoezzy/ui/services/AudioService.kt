@@ -84,11 +84,9 @@ class AudioService : Service() {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        // Create media style
         val mediaStyle = MediaStyle()
             .setShowActionsInCompactView(0, 1) // Показывает обе кнопки даже в свернутом виде
 
-        // Create notification
         return NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle("Playing Audio")
             .setContentText(if (isPlaying) "Now Playing" else "Paused")

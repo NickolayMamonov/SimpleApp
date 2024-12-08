@@ -12,6 +12,7 @@ import dev.whysoezzy.domain.data.repository.LocalStorageRepository
 import dev.whysoezzy.domain.entity.ListElementEntity
 import dev.whysoezzy.domain.mapper.ListElementMapper
 import dev.whysoezzy.domain.mapper.Mapper
+import dev.whysoezzy.domain.usecase.ElementByIdFromCacheUseCase
 import dev.whysoezzy.domain.usecase.ElementByIdUseCase
 import dev.whysoezzy.domain.usecase.ListElementUseCase
 import dev.whysoezzy.ui.details.vm.DetailsViewModel
@@ -37,6 +38,7 @@ val appModule = module {
     single<ListElementRepository> { ListElementRepositoryImpl() }
     single { ListElementUseCase(get(), get()) }
     single { ElementByIdUseCase(get(), get(), get()) }
+    single { ElementByIdFromCacheUseCase(get(), get()) }
     single<Mapper<ListElement, ListElementEntity>> { ListElementMapper(get()) }
     viewModel { MainViewModel(get(), get(),get()) }
     viewModel { DetailsViewModel(get(), get(), get()) }
